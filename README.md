@@ -1,9 +1,8 @@
-
 # AXI4-Lite FIFO Controller
 
 ## Overview
 
-This project implements an AXI4-Lite controlled FIFO peripheral in Verilog. The design exposes a small memory-mapped register interface through which an AXI4-Lite master can write data into a synchronous FIFO, read data back from the FIFO, and monitor FIFO status/error conditions.
+This project implements an AXI4-Lite controlled FIFO peripheral in Verilog. The design exposes a small memory-mapped register interface through which an AXI4-Lite master can write data into a synchronous FIFO, read data back from the FIFO, and monitor basic FIFO status/error conditions.
 
 The project was developed to understand AXI4-Lite handshaking, memory-mapped register design, FIFO control logic, and basic RTL verification using a Verilog testbench.
 
@@ -13,8 +12,8 @@ The project was developed to understand AXI4-Lite handshaking, memory-mapped reg
 * Memory-mapped register interface for FIFO access and status monitoring
 * Synchronous FIFO with full, empty, overflow, underflow, and level tracking
 * Status and error registers for debug and control
-* Testbench with AXI-style write and read tasks
-* Verified basic write-read operation through simulation waveform
+* Verilog testbench with AXI-style write and read tasks
+* Basic write-read operation verified through simulation
 
 ## Block Diagram
 
@@ -32,14 +31,14 @@ Synchronous FIFO
 
 ## Register Map
 
-| Address | Register     | Access | Description                                                       |
-| ------- | ------------ | ------ | ----------------------------------------------------------------- |
-| `0x00`  | CONTROL      | Write  | Control register. Used for clearing error flags.                  |
-| `0x04`  | STATUS       | Read   | FIFO status summary: full, empty, overflow, underflow, any error. |
-| `0x08`  | DATA_IN      | Write  | Writing to this address pushes data into the FIFO.                |
-| `0x0C`  | DATA_OUT     | Read   | Reading from this address pops data from the FIFO.                |
-| `0x10`  | FIFO_LEVEL   | Read   | Shows the current number of valid entries in FIFO.                |
-| `0x14`  | ERROR_STATUS | Read   | Shows detailed error flags.                                       |
+| Address | Register     | Access | Description                                       |
+| ------- | ------------ | ------ | ------------------------------------------------- |
+| `0x00`  | CONTROL      | Write  | Control register, used for clearing error flags   |
+| `0x04`  | STATUS       | Read   | FIFO status summary                               |
+| `0x08`  | DATA_IN      | Write  | Writing to this address pushes data into the FIFO |
+| `0x0C`  | DATA_OUT     | Read   | Reading from this address pops data from the FIFO |
+| `0x10`  | FIFO_LEVEL   | Read   | Shows the current number of valid FIFO entries    |
+| `0x14`  | ERROR_STATUS | Read   | Shows detailed error flags                        |
 
 ## STATUS Register Bit Mapping
 
@@ -67,24 +66,24 @@ Synchronous FIFO
 
 ### AXI4-Lite Write Path
 
-The write path uses the AXI4-Lite write address, write data, and write response channels:
+The write path uses the AXI4-Lite write address, write data, and write response channels.
 
 * `AWADDR` selects the target register.
 * `WDATA` carries the write data.
-* `WSTRB` is checked to ensure full 32-bit writes.
-* `BRESP` returns `OKAY`, `SLVERR`, or `DECERR`.
+* `WSTRB` is checked to support only full 32-bit writes.
+* `BRESP` returns the write response.
 
-When the master writes to the `DATA_IN` register, the controller generates a FIFO write enable pulse and passes `WDATA` into the FIFO.
+When the master writes to the `DATA_IN` register at address `0x08`, the controller generates a FIFO write enable pulse and passes `WDATA` into the FIFO.
 
 ### AXI4-Lite Read Path
 
-The read path uses the AXI4-Lite read address and read data channels:
+The read path uses the AXI4-Lite read address and read data channels.
 
 * `ARADDR` selects the register to read.
 * `RDATA` returns register data or FIFO output data.
-* `RRESP` returns read response status.
+* `RRESP` returns the read response.
 
-Reading the `DATA_OUT` register pops one word from the FIFO. Since the FIFO read output is registered, the read FSM includes wait states before asserting `RVALID` with valid FIFO data.
+Reading the `DATA_OUT` register at address `0x0C` pops one word from the FIFO. Since the FIFO read output is registered, the read FSM includes wait states before asserting `RVALID` with valid FIFO data.
 
 ### FIFO
 
@@ -92,38 +91,51 @@ The FIFO is a synchronous FIFO with parameterized data width and depth. It track
 
 * write pointer
 * read pointer
-* current level
+* FIFO level
 * full/empty status
 * overflow/underflow events
 
-## Verification
+## Simulation and Verification
 
-A Verilog testbench is used as an AXI4-Lite master. It provides reusable tasks for AXI write and AXI read transactions.
+A Verilog testbench is used as an AXI4-Lite master. It includes reusable tasks for AXI write and AXI read transactions.
 
-Verified operation:
+The basic verified sequence is:
 
-1. Reset is applied and released.
-2. A 32-bit data word is written to the `DATA_IN` register.
-3. The FIFO stores the written data.
-4. The same data is read back from the `DATA_OUT` register.
-5. The read data matches the written data in simulation.
+1. Apply reset and release reset.
+2. Write a 32-bit data word to the `DATA_IN` register.
+3. Store the data inside the synchronous FIFO.
+4. Read the data back from the `DATA_OUT` register.
+5. Compare the read data with the written data.
 
-Example verified data:
+Example verified transaction:
 
 ```text
 Written Data : 0xA0C21113
 Read Data    : 0xA0C21113
 ```
 
+## Simulation Waveforms
+
+### AXI4-Lite Write Transaction
+
+The waveform below shows the AXI4-Lite write operation to the `DATA_IN` register at address `0x08`. The write transaction uses the `AW`, `W`, and `B` channels. A successful write response is indicated by `BRESP = 00`.
+
+![AXI4-Lite Write Transaction Waveform](AXI_waveform_image_01.png)
+
+### AXI4-Lite Read Transaction
+
+The waveform below shows the AXI4-Lite read operation from the `DATA_OUT` register at address `0x0C`. The read data returned is `0xA0C21113`, matching the previously written data. A successful read response is indicated by `RRESP = 00`.
+
+![AXI4-Lite Read Transaction Waveform](AXI_waveform_image_02.png)
+
 ## Files
 
 ```text
-rtl/
-  axi_lite_slave.v
-  sync_fifo.v
-
-tb/
-  axi_lite_master_tb.v
+axi_lite_slave.v          # AXI4-Lite slave register interface and FIFO controller
+sync_fifo.v               # Synchronous FIFO
+axi_lite_master_tb.v      # Verilog testbench acting as AXI4-Lite master
+AXI_waveform_image_01.png # Write transaction waveform
+AXI_waveform_image_02.png # Read transaction waveform
 ```
 
 ## Tools Used
@@ -137,13 +149,12 @@ tb/
 * The design supports AXI4-Lite single-register transactions only.
 * AXI burst transfers are not supported because AXI4-Lite does not include burst support.
 * Partial writes using `WSTRB` are currently treated as an error.
-* The current verification is based on directed simulation tests.
+* Verification currently uses directed simulation tests.
 
 ## Possible Future Improvements
 
-* Add more directed test cases for overflow, underflow, invalid address, and clear-error operation.
-* Add assertions for AXI handshaking rules.
+* Add more directed tests for overflow, underflow, invalid address, and clear-error operation.
+* Add assertion-based checks for AXI handshaking rules.
 * Add interrupt output for FIFO status/error events.
 * Package the design as a Vivado custom IP.
-* Extend the design to support a full memory-to-memory data mover using AXI4-Full or AXI-Stream.
-
+* Extend the design toward a memory-to-memory data mover using AXI4-Full or AXI-Stream.

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="axi_lite_master_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="axi_lite_master_tb" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="420.001 ns"></ZoomEndTime>
+      <Cursor1Time time="420.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="192"></NameColumnWidth>
+      <ValueColumnWidth column_width="131"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="27" />
+   <wvobject fp_name="/axi_lite_master_tb/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/axi_lite_master_tb/resetn" type="logic">
+      <obj_property name="ElementShortName">resetn</obj_property>
+      <obj_property name="ObjectShortName">resetn</obj_property>
+   </wvobject>
+   <wvobject fp_name="/axi_lite_master_tb/M_AXI_AWADDR" type="array">
+      <obj_property name="ElementShortName">M_AXI_AWADDR[7:0]</obj_property>
+      <obj_property name="ObjectShortName">M_AXI_AWADDR[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/axi_lite_master_tb/M_AXI_AWVALID" type="logic">
+      <obj_property name="ElementShortName">M_AXI_AWVALID</obj_property>
+      <obj_property name="ObjectShortName">M_AXI_AWVALID</obj_property>
+   </wvobject>
+   <wvobject fp_name="/axi_lite_master_tb/M_AXI_AWREADY" type="logic">
+      <obj_property name="ElementShortName">M_AXI_AWREADY</obj_property>
+      <obj_property name="ObjectShortName">M_AXI_AWREADY</obj_property>
+   </wvobject>
+   <wvobject fp_name="/axi_lite_master_tb/M_AXI_WDATA" type="array">
+      <obj_property name="ElementShortName">M_AXI_WDATA[31:0]</obj_property>
+      <obj_property name="ObjectShortName">M_AXI_WDATA[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/axi_lite_master_tb/M_AXI_WSTRB" type="array">
+      <obj_property name="ElementShortName">M_AXI_WSTRB[3:0]</obj_property>
+      <obj_property name="ObjectShortName">M_AXI_WSTRB[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/axi_lite_master_tb/M_AXI_WVALID" type="logic">
+      <obj_property name="ElementShortName">M_AXI_WVALID</obj_property>
+      <obj_property name="ObjectShortName">M_AXI_WVALID</obj_property>
+   </wvobject>
+   <wvobject fp_name="/axi_lite_master_tb/M_AXI_WREADY" type="logic">
+      <obj_property name="ElementShortName">M_AXI_WREADY</obj_property>
+      <obj_property name="ObjectShortName">M_AXI_WREADY</obj_property>
+   </wvobject>
+   <wvobject fp_name="/axi_lite_master_tb/M_AXI_BREADY" type="logic">
+      <obj_property name="ElementShortName">M_AXI_BREADY</obj_property>
+      <obj_property name="ObjectShortName">M_AXI_BREADY</obj_property>
+   </wvobject>
+   <wvobject fp_name="/axi_lite_master_tb/M_AXI_BRESP" type="array">
+      <obj_property name="ElementShortName">M_AXI_BRESP[1:0]</obj_property>
+      <obj_property name="ObjectShortName">M_AXI_BRESP[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/axi_lite_master_tb/M_AXI_BVALID" type="logic">
+      <obj_property name="ElementShortName">M_AXI_BVALID</obj_property>
+      <obj_property name="ObjectShortName">M_AXI_BVALID</obj_property>
+   </wvobject>
+   <wvobject fp_name="/axi_lite_master_tb/M_AXI_ARADDR" type="array">
+      <obj_property name="ElementShortName">M_AXI_ARADDR[7:0]</obj_property>
+      <obj_property name="ObjectShortName">M_AXI_ARADDR[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/axi_lite_master_tb/M_AXI_RREADY" type="logic">
+      <obj_property name="ElementShortName">M_AXI_RREADY</obj_property>
+      <obj_property name="ObjectShortName">M_AXI_RREADY</obj_property>
+   </wvobject>
+   <wvobject fp_name="/axi_lite_master_tb/M_AXI_RRESP" type="array">
+      <obj_property name="ElementShortName">M_AXI_RRESP[1:0]</obj_property>
+      <obj_property name="ObjectShortName">M_AXI_RRESP[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/axi_lite_master_tb/M_AXI_RDATA" type="array">
+      <obj_property name="ElementShortName">M_AXI_RDATA[31:0]</obj_property>
+      <obj_property name="ObjectShortName">M_AXI_RDATA[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/axi_lite_master_tb/M_AXI_RVALID" type="logic">
+      <obj_property name="ElementShortName">M_AXI_RVALID</obj_property>
+      <obj_property name="ObjectShortName">M_AXI_RVALID</obj_property>
+   </wvobject>
+   <wvobject fp_name="/axi_lite_master_tb/M_AXI_ARVALID" type="logic">
+      <obj_property name="ElementShortName">M_AXI_ARVALID</obj_property>
+      <obj_property name="ObjectShortName">M_AXI_ARVALID</obj_property>
+   </wvobject>
+   <wvobject fp_name="/axi_lite_master_tb/M_AXI_ARREADY" type="logic">
+      <obj_property name="ElementShortName">M_AXI_ARREADY</obj_property>
+      <obj_property name="ObjectShortName">M_AXI_ARREADY</obj_property>
+   </wvobject>
+   <wvobject fp_name="/axi_lite_master_tb/WRITE_DATA" type="array">
+      <obj_property name="ElementShortName">WRITE_DATA[31:0]</obj_property>
+      <obj_property name="ObjectShortName">WRITE_DATA[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/axi_lite_master_tb/WRITE_ADDR" type="array">
+      <obj_property name="ElementShortName">WRITE_ADDR[7:0]</obj_property>
+      <obj_property name="ObjectShortName">WRITE_ADDR[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/axi_lite_master_tb/READ_ADDR" type="array">
+      <obj_property name="ElementShortName">READ_ADDR[7:0]</obj_property>
+      <obj_property name="ObjectShortName">READ_ADDR[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/axi_lite_master_tb/READ_DATA_OUT" type="array">
+      <obj_property name="ElementShortName">READ_DATA_OUT[31:0]</obj_property>
+      <obj_property name="ObjectShortName">READ_DATA_OUT[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/axi_lite_master_tb/DATA_WIDTH" type="array">
+      <obj_property name="ElementShortName">DATA_WIDTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">DATA_WIDTH[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/axi_lite_master_tb/ADDR_WIDTH" type="array">
+      <obj_property name="ElementShortName">ADDR_WIDTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ADDR_WIDTH[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/axi_lite_master_tb/FIFO_LEVEL_WIDTH" type="array">
+      <obj_property name="ElementShortName">FIFO_LEVEL_WIDTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">FIFO_LEVEL_WIDTH[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/axi_lite_master_tb/FIFO_DEPTH" type="array">
+      <obj_property name="ElementShortName">FIFO_DEPTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">FIFO_DEPTH[31:0]</obj_property>
+   </wvobject>
+</wave_config>
